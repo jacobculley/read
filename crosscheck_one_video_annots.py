@@ -22,7 +22,7 @@ def main(annofile):
   loc_labels = ['OutgoBusLane', 'IncomBusLane', 'OutgoCycLane', 'IncomCycLane', 'VehLane', 'OutgoLane', 'IncomLane', 'LftPav', 'RhtPav', 'Pav', 'Jun', 'xing', 'BusStop', 'parking', 'LftParking', 'rightParking']
   core_actions = ['MovAway', 'MovTow', 'Mov', 'Rev','Stop','XingFmRht', 'XingFmLft']
   core_actions_tl = ['Red','Amber', 'Green', 'black']
-  print(' # agent tags', len(agent_labels), '# action tags', len(action_labels), ' #loc tags ', len(loc_labels), ' # total tags ', len(input_labels))
+  print(' # agent tags', len(agent_labels), '# action tags', len(action_labels), ' #loc tags', len(loc_labels), ' # total tags', len(input_labels))
 
   print('length of action labels', len(action_labels), sorted(action_labels))
   
@@ -64,22 +64,22 @@ def main(annofile):
           
           ####### Correctection Starts here ############
           if agc != 1:
-            print('There must/atleast be only one Agent label per box but there are ', agc, ' in frame numeber ', f)
+            print('There must/atleast be only one Agent label per box but there are', agc, 'in frame numeber', f)
             print(agent_label, action_tags, loc_tags, count);count+=1
           if len(loc_tags) == 0 and agent_label not in ['TL','AV', 'OthTL']:
-            print('There must be at least one location label per box but there are ', len(loc_tags), ' in frame numeber ', f)
+            print('There must be at least one location label per box but there are', len(loc_tags), 'in frame numeber', f)
             print(agent_label, action_tags, loc_tags, count);count+=1
           
           if len(loc_tags) != 0 and agent_label in ['TL', 'OthTL']:
-            print( agent_label, ' should not have a location label but there are ', loc_tags, ' in frame numeber ', f)
+            print( agent_label, 'should not have a location label but there are', loc_tags, 'in frame numeber', f)
             print(agent_label, action_tags, loc_tags, count);count+=1
           
           if agent_label in ['TL', 'AV', 'OthTL'] and len(action_tags)>1: ## Traffic lights can only have one action label
-            print(agent_label, ' should only have one action label but there are ', action_tags, ' in frame number ', f)
+            print(agent_label, 'should only have one action label but there are', action_tags, 'in frame number', f)
             print(agent_label, action_tags, loc_tags, count);count+=1
           
           if len(action_tags)<1:
-            print(agent_label, ' should at least one action label but there is none ', action_tags, ' in frame numeber ', f )
+            print(agent_label, 'should at least one action label but there is none', action_tags, 'in frame numeber', f )
             print(agent_label, action_tags, loc_tags, count);count+=1
           if agent_label not in ['AV', 'TL','OthTL']:
           	core_present = 0
@@ -87,7 +87,7 @@ def main(annofile):
           		if act in core_actions:
           			core_present += 1
           	if core_present != 1:
-          		print(agent_label, ' should only have one core action label but there are ', core_present, ' in frame numeber ', f , count);count+=1
+          		print(agent_label, 'should only have one core action label but there are', core_present, 'in frame numeber', f , count);count+=1
           		print(agent_label, action_tags, loc_tags)
           if agent_label in ['TL','OthTL']:
           	core_present = 0
@@ -95,12 +95,12 @@ def main(annofile):
           		if act in core_actions_tl:
           			core_present += 1
           	if core_present != 1:
-          		print(agent_label, ' should only have one core action label but there are ', core_present, ' in frame numeber ', f , count);count+=1
+          		print(agent_label, 'should only have one core action label but there are', core_present, 'in frame numeber', f , count);count+=1
           		print(agent_label, action_tags, loc_tags)
 
           if agent_label not in ['AV', 'Ped']:
           	if 'Mov' in action_tags:
-          		print('Mov action tag can not be labeled on ', agent_label, ' in frame number ', f, count);count+=1
+          		print('Mov action tag can not be labeled on', agent_label, 'in frame number', f, count);count+=1
           		print(agent_label, action_tags, loc_tags)
 
           # print(len(used_agtaction_tags))
@@ -130,5 +130,5 @@ if __name__ == '__main__':
   annofiles = os.listdir(base_dir)
   annofiles = [af for af in annofiles if af.endswith('.json')]
   for annofile in annofiles:
-  		print('\n\n\n\n\n annofile ', annofile, '\n\n\n\n\n\n')
+  		print('\n\n\n\n\n annofile', annofile, '\n\n\n\n\n\n')
   		main(base_dir+annofile)
