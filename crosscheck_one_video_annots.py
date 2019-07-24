@@ -103,6 +103,11 @@ def main(annofile):
           		print('Mov action tag can not be labeled on', agent_label, 'in frame number', f, count);count+=1
           		print(agent_label, action_tags, loc_tags)
 
+          if 'LftPav' in loc_tags and (box[0]+box[2])/2 > 0.5:
+                  print('LftPav action tag on right side of the screen in frame number', f , count);count+=1
+          if 'RhtPav' in loc_tags and (box[0]+box[2])/2 < 0.5:
+                  print('RhtPav action tag on left side of the screen in frame number', f , count);count+=1
+
           # print(len(used_agtaction_tags))
           if agent_label == 'AV':
             frame_av_actions = action_tags
