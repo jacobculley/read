@@ -9,6 +9,9 @@ Please do not distribute it.
 
 import json, os
 base_dir = '/home/reza/'
+base_dir = '/home/gurkirt/Downloads/annos/'
+base_dir = '/home/gurkirt/Downloads/Robot-Car-Annotations/done/'
+base_dir = '/home/gurkirt/Downloads/'
 def main(annofile):
   
   input_labels = ['AV', 'Amber', 'Break', 'Bus', 'BusStop', 'Car', 'Cyc', 'EmVeh', 'Green', 'HazLit', 'IncatLft', 'IncatRht', 'IncomBusLane', 'IncomCycLane', 'IncomLane', 'Jun', 'LarVeh', 'LftParking', 'LftPav', 'MedVeh', 'Mobike', 'Mov', 'MovAway', 'MovLft', 'MovRht', 'MovTow', 'OthTL', 'OutgoBusLane', 'OutgoCycLane', 'OutgoLane', 'Ovtak', 'Pav', 'Ped', 'PushObj', 'Red', 'Rev', 'RhtPav', 'SmalVeh', 'Stop', 'TL', 'TurLft', 'TurRht', 'VehLane', 'Wait2X', 'Xing', 'XingFmLft', 'XingFmRht', 'black', 'parking', 'rightParking', 'xing']
@@ -123,6 +126,8 @@ def main(annofile):
   print(new_str)
       
 if __name__ == '__main__':
-  for annofile in [base_dir+'/annot-files/2014-12-09-13-21-02_stereo_centre_01.mp4.json', base_dir+'/annot-files/2015-02-03-08-45-10_stereo_centre_02.mp4.json']:
+  annofiles = os.listdir(base_dir)
+  annofiles = [af for af in annofiles if af.endswith('.json')]
+  for annofile in annofiles:
   		print('\n\n\n\n\n annofile ', annofile, '\n\n\n\n\n\n')
-  		main(annofile)
+  		main(base_dir+annofile)
