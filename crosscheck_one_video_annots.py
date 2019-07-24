@@ -108,6 +108,9 @@ def main(annofile):
           if 'RhtPav' in loc_tags and (box[0]+box[2])/2 < 0.5:
                   print('RhtPav action tag on left side of the screen in frame number', f , count);count+=1
 
+          if agent_label == 'Mobike' and 'Rev' in action_tags:
+              print('Motorbike in reverse? Frame number', f , count);count+=1
+
           # print(len(used_agtaction_tags))
           if agent_label == 'AV':
             frame_av_actions = action_tags
