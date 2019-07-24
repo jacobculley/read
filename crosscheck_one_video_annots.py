@@ -63,14 +63,14 @@ def main(annofile):
           
           ####### Correctection Starts here ############
           if agc != 1:
-            print('There must/atleast be only one Agent label per box but here are ', agc, ' in frame numeber ', f)
+            print('There must/atleast be only one Agent label per box but there are ', agc, ' in frame numeber ', f)
             print(agent_label, action_tags, loc_tags, count);count+=1
           if len(loc_tags) == 0 and agent_label not in ['TL','AV', 'OthTL']:
-            print('There must be at least one location label per box but here are ', len(loc_tags), ' in frame numeber ', f)
+            print('There must be at least one location label per box but there are ', len(loc_tags), ' in frame numeber ', f)
             print(agent_label, action_tags, loc_tags, count);count+=1
           
           if len(loc_tags) != 0 and agent_label in ['TL', 'OthTL']:
-            print( agent_label, ' should not have a location label but here are ', loc_tags, ' in frame numeber ', f)
+            print( agent_label, ' should not have a location label but there are ', loc_tags, ' in frame numeber ', f)
             print(agent_label, action_tags, loc_tags, count);count+=1
           
           if agent_label in ['TL', 'AV', 'OthTL'] and len(action_tags)>1: ## Traffic lights can only have one action label
@@ -78,7 +78,7 @@ def main(annofile):
             print(agent_label, action_tags, loc_tags, count);count+=1
           
           if len(action_tags)<1:
-            print(agent_label, ' should at least one action label but ther is none ', action_tags, ' in frame numeber ', f )
+            print(agent_label, ' should at least one action label but there is none ', action_tags, ' in frame numeber ', f )
             print(agent_label, action_tags, loc_tags, count);count+=1
           if agent_label not in ['AV', 'TL','OthTL']:
           	core_present = 0
@@ -99,7 +99,7 @@ def main(annofile):
 
           if agent_label not in ['AV', 'Ped']:
           	if 'Mov' in action_tags:
-          		print('Mov action tag can not be labeled on ', agent_label, ' in fram number ', f, count);count+=1
+          		print('Mov action tag can not be labeled on ', agent_label, ' in frame number ', f, count);count+=1
           		print(agent_label, action_tags, loc_tags)
 
           # print(len(used_agtaction_tags))
