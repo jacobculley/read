@@ -107,13 +107,25 @@ def main(annofile):
                     print('Mov action tag can not be labeled on', agent_label, 'in frame number', f, count); count += 1
                     print(agent_label, action_tags, loc_tags)
 
-            if 'LftPav' in loc_tags and (box[0] + box[2]) / 2 > 0.5:
-                print('LftPav action tag on right side of the screen in frame number', f, count); count += 1
-            if 'RhtPav' in loc_tags and (box[0] + box[2]) / 2 < 0.5:
-                print('RhtPav action tag on left side of the screen in frame number', f, count); count += 1
+            if (box[0] + box[2]) / 2 > 0.5:  # box on right of screen
+                if 'LftPav' in loc_tags:
+                    print('LftPav action tag on right side of the screen in frame number', f, count); count += 1
+                for loc_tag in 'OutgoBusLane', 'OutgoCycLane', 'OutgoLane':
+                    if loc_tag in loc_tags:
+                        print(loc_tag, 'location tag on right side of the screen in frame number', f, count); count += 1
+
+            if (box[0] + box[2]) / 2 < 0.5:
+                if 'RhtPav' in loc_tags:
+                    print('RhtPav action tag on left side of the screen in frame number', f, count); count += 1
+                for loc_tag in 'IngoBusLane', 'IngoCycLane', 'IngoLane':
+                    if loc_tag in loc_tags:
+                        print(loc_tag, 'location tag on left side of the screen in frame number', f, count); count += 1
 
             if agent_label == 'Mobike' and 'Rev' in action_tags:
                 print('Motorbike in reverse? Frame number', f, count); count += 1
+
+            if 'xing' in loc_tags and agent_label != 'Ped':
+                print(agent_label, 'crossing the road? frame number', f, count); count += 1
 
             # print(len(used_agtaction_tags))
             if agent_label == 'AV':
