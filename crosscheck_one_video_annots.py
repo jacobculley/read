@@ -10,11 +10,7 @@ Please do not distribute it.
 
 import json, os
 
-base_dir = '/home/reza/'
-base_dir = '/home/gurkirt/Downloads/annos/'
-base_dir = '/home/gurkirt/Downloads/Robot-Car-Annotations/done/'
 base_dir = './'
-
 
 def main(annofile):
     input_labels = ['AV', 'Amber', 'Break', 'Bus', 'BusStop', 'Car', 'Cyc', 'EmVeh', 'Green', 'HazLit', 'IncatLft', 'IncatRht', 'IncomBusLane', 'IncomCycLane', 'IncomLane', 'Jun', 'LarVeh', 'LftParking', 'LftPav', 'MedVeh', 'Mobike', 'Mov', 'MovAway', 'MovLft', 'MovRht', 'MovTow', 'OthTL', 'OutgoBusLane', 'OutgoCycLane', 'OutgoLane', 'Ovtak', 'Pav', 'Ped', 'PushObj', 'Red', 'Rev', 'RhtPav', 'SmalVeh', 'Stop', 'TL', 'TurLft', 'TurRht', 'VehLane', 'Wait2X', 'Xing', 'XingFmLft', 'XingFmRht', 'black', 'parking', 'rightParking', 'xing']
