@@ -81,14 +81,23 @@ def main(annofile):
             if len(action_tags) < 1:
                 print(agent_label, 'should at least one action label but there is none', action_tags, 'in frame number', f); count += 1
                 print(agent_label, action_tags, loc_tags, count)
+            
             if agent_label not in ['AV', 'TL', 'OthTL']:
                 core_present = 0
+                correction_present = 0
                 for act in action_tags:
                     if act in core_actions:
                         core_present += 1
+                for act in ['IncatLft', 'IncatRht', 'TurLft', 'TurRht','XingFmLft', 'XingFmRht']:
+                    if act in core_actions:
+                        correction_present += 1
                 if core_present != 1:
                     print(agent_label, 'should only have one core action label but there are', core_present, 'in frame number', f, count); count += 1
                     print(agent_label, action_tags, loc_tags)
+                if correction_present> 1:
+                    print('Warning!!! ', agent_label, ' may have ', correction_present, 'because of following action tags', action_tags, 'in frame number', f, count); count += 1
+                    print(agent_label, action_tags, loc_tags)
+
             if agent_label in ['TL', 'OthTL']:
                 core_present = 0
                 for act in action_tags:
